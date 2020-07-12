@@ -1,0 +1,7 @@
+dirty ~~~
+<h1>asdf</h1>
+<script>
+location.href = "https://www.naver.com";
+</script>
+
+END
