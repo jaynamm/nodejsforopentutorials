@@ -8,7 +8,7 @@
 ``` npm install -S sanitize-html ```
 
 npm 옵션
--g : grobal.  글로벌로 설치한다.
+-g : grobal.  글로벌로 설치한다
 -S : 지역 관련 옵션인거 같은데 다시 알아봐야겟네...
 
 20200712 - 생활코딩 Node.js 수업 완강
