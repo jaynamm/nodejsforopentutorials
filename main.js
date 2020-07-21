@@ -34,25 +34,23 @@ var app = http.createServer(function(request, response){
             })
         } else {
             fs.readdir('./data', function(error, filelist){
-                var filteredId = path.parse(queryData.id).base;
-                // 파일 읽어서 가져오기
-                fs.readFile(`data/${filteredId}`, 'utf-8', function(err, description){
+              var filteredId = path.parse(queryData.id).base;
+              fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
                 var title = queryData.id;
                 var sanitizedTitle = sanitizeHtml(title);
                 var sanitizedDescription = sanitizeHtml(description, {
-                    allowedTags: ['h1'] // 해당 태크는 허용한다.
+                  allowedTags:['h1']
                 });
                 var list = template.list(filelist);
-                var html = template.html(title, list, 
-                    `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`, 
-                    `<a href="/create">create</a>
+                var html = template.HTML(sanitizedTitle, list,
+                  `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
+                  ` <a href="/create">create</a>
                     <a href="/update?id=${sanitizedTitle}">update</a>
                     <form action="delete_process" method="post">
-                        <input type="hidden" name="id" value="${sanitizedTitle}">
-                        <input type="submit" value="delete">
+                      <input type="hidden" name="id" value="${sanitizedTitle}">
+                      <input type="submit" value="delete">
                     </form>`
                 );
-                
                 response.writeHead(200);
                 response.end(html);
                 });
